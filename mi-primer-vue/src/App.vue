@@ -2,15 +2,15 @@
  const name = 'Vue Dinamico';
 
 //metodo -methods
-const handleClick = () => {
-  console.log('Me diste click');
+const handleClick = (message) => {
+  console.log(message);
 }
 </script>
 
 <template> 
   <h1>Hola {{ name.toUpperCase() }}</h1>
-  <button v-on:click="handleClick"> Activame-1 </button>
-  <button @click="handleClick"> Activame-2 </button>
+  <button v-on:click="handleClick('Texto 1')"> Activame-1 </button>
+  <button @click="handleClick('Texto 2')"> Activame-2 </button>
 </template>
 
 <style>
