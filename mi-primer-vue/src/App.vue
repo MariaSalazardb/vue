@@ -47,23 +47,26 @@ const bloquearBtnadd = computed(() => {
 </script>
 
 <template> 
-  <h1>Hola {{ name.toUpperCase() }}</h1>
-  <h2 :class="classCounter"> {{ counter }}</h2>
-  <button @click="increment">Incremet</button>
- <button @click="decrement">Decrement</button>
-  <button @click="reset">Reset</button> 
-  <button @click="add" :disabled="bloquearBtnadd">Add </button>
-<br />
-{{ araryFavoritos }}
-
-<ul>
-  <li v-for="(num, index) in araryFavoritos" :key="index">
-    {{ num }}
-  </li>
-</ul>
-
+   <div class="container text-center  mt-3">
+     <h1>Hola {{ name.toUpperCase() }}</h1>
+     <h2 :class="classCounter"> {{ counter }}</h2>
+     <div cclass="btn-group">
+       <button @click="increment" class="btn btn-success">Incremet</button>
+      <button @click="decrement"class="btn btn-danger">Decrement</button>
+      <button @click="reset" class="btm btn-secondary">Reset</button> 
+      <button @click="add" :disabled="bloquearBtnadd" class="btn btn-primary">Add </button>
+     </div>
+    
+  <ul class="list-group mt-4">
+   <li
+       class="list-group-item"
+       v-for="(num, index) in arrayFavoritos" 
+       :key="index">
+       {{ num }}
+    </li>
+  </ul>
+</div>
 </template>
-
 <style>
 h1 {
   color: red;
