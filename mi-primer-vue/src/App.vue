@@ -1,25 +1,38 @@
 <script setup>
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
 
 const name = 'Vue Dinamico';
 
 const counter = ref(0);
-
+const arrayFavoritos = ref([]);
 const increment =() =>  {
 counter.value++;
 };
 
-const decrement =() => {
+const decrement = () => {
 
 counter.value--;
 };
 
-const reset =() => {
+const reset = () => {
   counter.value = 0;
 
 };
 
- const classCounter = () => {
+const add  = () => {
+  arrayFavoritos.value.push(counter.value);
+};
+
+const bloquearBtnadd = computed(() => {
+  const numSearch = arrayFavoritos.value.find((num) => num === counter.value);
+  console.log (numSearch);
+  if (numSearch === 0) return true;
+  return numSearch ? true : false;
+  //return numSearch || numSearch === 0 ? true : false;
+
+});
+
+ const classCounter = computed(() => {
   if(counter.value === 0) {
     return 'zero';
   }
@@ -29,7 +42,8 @@ const reset =() => {
   if(counter.value < 0) {
     return 'Negative';
   }
-};
+ });
+
 </script>
 
 <template> 
@@ -38,7 +52,16 @@ const reset =() => {
   <button @click="increment">Incremet</button>
  <button @click="decrement">Decrement</button>
   <button @click="reset">Reset</button> 
-  
+  <button @click="add" :disabled="bloquearBtnadd">Add </button>
+<br />
+{{ araryFavoritos }}
+
+<ul>
+  <li v-for="(num, index) in araryFavoritos" :key="index">
+    {{ num }}
+  </li>
+</ul>
+
 </template>
 
 <style>
