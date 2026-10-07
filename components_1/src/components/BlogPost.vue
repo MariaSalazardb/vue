@@ -17,6 +17,9 @@
         <div class="card-body">
             <h5 class="card-title" > {{ id }} - {{ title }} </h5>
             <p> {{ body }} </p>
+            <button @click="$emit('cambiarFavoritos', title)" 
+            class="btn btn-outline-primary">
+            Favoritos</button>
         </div>
     </div>
 </template>
