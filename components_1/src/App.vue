@@ -7,6 +7,10 @@ import BlogPost from "./components/BlogPost.vue";
   
 
 const post = ref([]);
+const postXpage = 5;
+const inicio = ref(0);
+const fin = ref(postXpage)
+
 
 const favorito = ref("");
 
@@ -30,7 +34,7 @@ fetch('https://jsonplaceholder.typicode.com/posts')
       <PaginatePost class="mb-2"/>
 
    <BlogPost
-        v-for="post in post.slice(0,3)" 
+        v-for="post in post.slice(inicio, fin)" 
         :key="post.id" 
         :title="post.title" 
         :id="post.id" 
