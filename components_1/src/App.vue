@@ -1,13 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import {ref, computed} from 'vue';
 
 import PaginatePost from './components/PaginatePost.vue';
 import BlogPost from "./components/BlogPost.vue";
 
-  
-
 const post = ref([]);
-const postXpage = 5;
+const postXpage = 10;
 const inicio = ref(0);
 const fin = ref(postXpage)
 
@@ -24,15 +22,17 @@ const next = () => {
 };
 
 const prev = () => {
-  inicio.value += postXpage;
+  inicio.value += -postXpage;
   fin.value += -postXpage;
 };
 
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then((res) => res.json())
   .then((data) => {
-  post.value = data
+  post.value = data;
   });
+
+  const maxLength = computed(() => post.value.length)
 </script>
 
 <template>
@@ -41,17 +41,20 @@ fetch('https://jsonplaceholder.typicode.com/posts')
    <h2> Mis Post Favoritos: {{ favorito }}
    </h2>
 
-       <button @click="prev">Prev Previsorio</button>
-        <button @click="next">Next Previsorio</button>
-   
-      <PaginatePost class="mb-2"/>
+    <PaginatePost 
+    @next="next" 
+    @prev="prev" 
+    :inicio ="inicio" 
+    :fin = "fin"
+    :maxLength="maxLength"
+    class="mb-2" />
 
    <BlogPost
         v-for="post in post.slice(inicio, fin)" 
         :key="post.id" 
         :title="post.title" 
         :id="post.id" 
-       :body="post.body"
+        :body="post.body"
         :cambiarFavorito="cambiarFavoritos"
         class="mb-2"
         >
