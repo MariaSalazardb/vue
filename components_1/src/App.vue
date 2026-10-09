@@ -1,5 +1,5 @@
 <script setup>
-import {ref, computed} from 'vue';
+import {ref, computed, onMounted} from 'vue';
 
 import PaginatePost from './components/PaginatePost.vue';
 import BlogPost from "./components/BlogPost.vue";
@@ -9,7 +9,7 @@ const post = ref([]);
 const postXpage = 10;
 const inicio = ref(0);
 const fin = ref(postXpage)
-const loading = ref(true);
+const loading = ref(false);
 
 
 const favorito = ref("");
@@ -27,19 +27,45 @@ const prev = () => {
   inicio.value += -postXpage;
   fin.value += -postXpage;
 };
-
-fetch('https://jsonplaceholder.typicode.com/posts')
-  .then((res) => res.json())
-  .then((data) => {
-  post.value = data;
-  })
-  .catch((e) => colsole.log(e))
-  .finally(() => {
+ //onMounted(async () => {
+  // loading.value = true
+ // try {
+   // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    //post.value = await res.json();
+ // } catch (error) {
+    console.log(error);
+ // } finally {
+    //setTimeout(() => {
+     // loading.value = false;
+   // }, 2000);
+ // }
+//});
+//fetch('https://jsonplaceholder.typicode.com/posts')
+  //.then((res) => res.json())
+  //.then((data) => {
+  //post.value = data;
+  //})
+  //.catch((e) => colsole.log(e))
+  //.finally(() => {
+    //setTimeout(() => {
+     // loading.value = false;
+   // }, 2000);
+  //});
+  const fetchData = async() => {
+     try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    post.value = await res.json();
+  } catch (error) {
+    console.log(error);
+  } finally {
     setTimeout(() => {
       loading.value = false;
     }, 2000);
-  });
-  
+  }
+  }
+
+
+
   const maxLength = computed(() => post.value.length)
 </script>
 
