@@ -17,8 +17,16 @@ import HelloWorld from './components/HelloWorld.vue'
      PokeApi
       </router-link>
     </div>
-      <router-link class="btn btn-outline-primary" to="/">Home</router-link> 
-      <router-link class="btn btn-outline-primary" to="/pokemons">Pokemons</router-link> 
+      <router-link 
+      active-class="active"
+      class="btn btn-outline-primary" mr-2
+      to="/">
+      Home</router-link> 
+      <router-link 
+      active-class="active"
+      class="btn btn-outline-primary" 
+      to="/pokemons">
+      Pokemons</router-link> 
      
   </nav>
  <div class="container"> </div>
