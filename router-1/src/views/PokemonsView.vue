@@ -1,8 +1,7 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import {useGetData} from '@/composables/getData'
-
+import {useGetData} from '@/composables/getData';
 
 const {data,loading, getData} = useGetData()
 
@@ -10,14 +9,14 @@ getData('https://pokeapi.co/api/v2/pokemon');
 </script>
 <template>
     <h1>Pokemons</h1>
-    <p v-if="loading">Cargando Indormacion</p>
+    <p v-if="loading">Cargando Indormacion...</p>
     <div v-if="data">
-    <ul>
+     <ul>
         <li v-for="poke in data.results" >
             <router-link :to="`/pokemons/${poke.name}`">
                 {{ poke.name }}
             </router-link>
         </li>
-    </ul>
+      </ul>
     </div>
 </template>

@@ -1,13 +1,12 @@
 
 <script setup>
-import axios from "axios";
-import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import {useRoute, UseRouter} from "vue-router";
+import { useGetData } from "@/components/composables/getData";
 
 const route = useRoute();
 const router = useRouter();
 
-const poke = ref({});
+const {get}
 
 const back = () => {
     router.push("/pokemons");
