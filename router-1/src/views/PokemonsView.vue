@@ -3,7 +3,7 @@
 import { RouterLink } from "vue-router";
 import {useGetData} from '@/composables/getData';
 
-const {data,loading, getData} = useGetData()
+const {data, loading, getData} = useGetData()
 
 getData('https://pokeapi.co/api/v2/pokemon');
 </script>
